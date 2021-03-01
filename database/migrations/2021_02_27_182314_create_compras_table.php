@@ -15,14 +15,16 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo');
-            $table->string('produto');
-            $table->integer('unidade');
+            $table->double('valor', 8, 2);
+            $table->bigInteger('unidade');
+            $table->double('total', 8, 2);
+            $table->UnsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')
+                  ->references('id')
+                  ->on('clientes');
             $table->timestamps();
         });
     }
-    //Checar problema dessa linha:$table->double('valor', 8, 2);
-            
 
     /**
      * Reverse the migrations.
