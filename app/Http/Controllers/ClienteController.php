@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
+use App\Models\User;
+use Storage;
+use Auth;
 
 class ClienteController extends Controller
 {
@@ -13,7 +17,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $lista=Cliente::get();
+        return view('Clientes.listar_cliente', ['clientes'=>$lista]);
     }
 
     /**
@@ -23,7 +28,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        $usuarios = User::get();
+        return view('Clientes.cadastrar_cliente', ['usuarios'=>$usuarios]);
     }
 
     /**
@@ -34,7 +40,43 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nome = $request->post('nome');
+        $rua = $request->post('rua');
+        $numero_casa = $request->post('numero_casa');
+        $bairro = $request->post('bairro');
+        $cidade = $request->post('cidade');
+        $UF = $request->post('UF');
+
+        $user_id = $request->post('user_id');
+
+        $CPF = $request->post('CPF');
+        $telefone = $request->post('telefone');
+        $renda = $request->post('renda');
+        $cliente = new Cliente;
+        $cliente->nome=$nome;
+        $cliente->rua = $rua;
+        $cliente->numero_casa = $numero_casa;
+        $cliente->bairro = $bairro;
+        $cliente->cidade = $cidade;
+        $cliente->CPF = $CPF;
+        $cliente->telefone = $telefone;
+        $cliente->renda = $renda;
+        if($user_id != 0){
+            $cliente->user_id = $user_id;
+        }
+        if($user_id != 0){
+            $cliente->UF = $UF;
+        }
+        if($request->has('img')){
+            $file = $request->file('img');
+            $filename = $file->getClientOriginalName();
+            $path = Storage::disk('public')->putFileAs(
+                Auth::user()->id, $file, $filename
+            );
+            $cliente->img = $path;
+        }
+        $cliente->save();
+        return redirect()->to(route('clientes.index'));
     }
 
     /**
@@ -45,7 +87,8 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('Clientes.visualizar', ['cliente'=>$cliente]);
     }
 
     /**
@@ -56,7 +99,9 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuarios = User::get();
+        $cliente = Cliente::find($id);
+        return view('Clientes.editar_cliente', ['cliente'=>$cliente], ['usuarios'=>$usuarios]);
     }
 
     /**
@@ -68,7 +113,41 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $nome = $request->post('nome');
+        $rua = $request->post('rua');
+        $numero_casa = $request->post('numero_casa');
+        $bairro = $request->post('bairro');
+        $cidade = $request->post('cidade');
+        $UF = $request->post('UF');
+        $user_id = $request->post('user_id');
+        $CPF = $request->post('CPF');
+        $telefone = $request->post('telefone');
+        $renda = $request->post('renda');
+        $cliente = Cliente::find($id);
+        $cliente->nome=$nome;
+        $cliente->rua = $rua;
+        $cliente->numero_casa = $numero_casa;
+        $cliente->bairro = $bairro;
+        $cliente->cidade = $cidade;
+        $cliente->CPF = $CPF;
+        $cliente->telefone = $telefone;
+        $cliente->renda = $renda;
+        if($user_id != 0){
+            $cliente->user_id = $user_id;
+        }
+        if($UF != 0){
+            $cliente->UF = $UF;
+        }
+        if($request->has('img')){
+            $file = $request->file('img');
+            $filename = $file->getClientOriginalName();
+            $path = Storage::disk('public')->putFileAs(
+                Auth::user()->id, $file, $filename
+            );
+            $cliente->img = $path;
+        }
+        $cliente->save();
+        return redirect()->to(route('clientes.index'));
     }
 
     /**
@@ -79,6 +158,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        $cliente->delete();
+        return redirect()->to(route('clientes.index'));
     }
 }

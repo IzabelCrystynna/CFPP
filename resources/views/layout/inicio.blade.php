@@ -65,10 +65,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" aria-expanded="true"><i class="ti-clipboard"></i><span>Lista de Clientes</span></a>
+                                <a href="{{(route('clientes.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Lista de Clientes</span></a>
                             </li>
                             <li>
-                                <a href="#" aria-expanded="true"><i class="ti-clipboard"></i><span>Lista de Produtos</span></a>
+                                <a href="{{(route('produtos.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Lista de Produtos</span></a>
                             </li>
                         </ul>
                     </nav>
