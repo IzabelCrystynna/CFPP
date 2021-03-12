@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Cliente;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +26,11 @@ Route::get('/cadastro', function () {
 Route::get('/teste', function () {
     return view('teste');
 });
+Route::get('/perfil', function () {
+	$user=User::get();
+    return view('layout.perfil', ['users'=>$user]);
+})->name('perfil');
 
-
-Route::get('/compra/add', function () {
-    return view('Compras.cadastrar');
-});
 
 
 Route::resource('clientes', 'ClienteController');

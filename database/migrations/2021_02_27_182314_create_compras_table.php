@@ -22,6 +22,10 @@ class CreateComprasTable extends Migration
             $table->foreign('cliente_id')
                   ->references('id')
                   ->on('clientes');
+            $table->UnsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users');
             $table->timestamps();
         });
     }

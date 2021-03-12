@@ -92,6 +92,7 @@
                             <img class="avatar user-thumb" src="{{asset('resumo/srtdash/assets/images/author/avatar.png')}}" alt="avatar">
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}<i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}
                                 </a>

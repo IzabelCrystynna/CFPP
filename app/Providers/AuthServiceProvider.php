@@ -24,6 +24,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        Gate::define('lista',function($user,$cliente){
+            return $user->id === $cliente->user_id;
+        });
 
         //
     }
