@@ -16,8 +16,15 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $lista=Produto::get();
-        return view('Produtos.lista', ['produtos'=>$lista]);
+        $search = request('search');
+        if($search){
+            $lista = Produto::where([
+                ['nome', 'like', '%'.$search.'%']
+            ])->get();
+        }else{
+            $lista = Produto::all();
+        }
+        return view('Produtos.lista', ['produtos'=>$lista, 'search'=>$search]);
     }
 
     /**

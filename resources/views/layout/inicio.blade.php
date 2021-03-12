@@ -86,12 +86,6 @@
                             <span></span>
                             <span></span>
                         </div>
-                        <div class="search-box pull-left">
-                            <form action="#">
-                                <input type="text" name="search" placeholder="Procurar..." required>
-                                <i class="ti-search"></i>
-                            </form>
-                        </div>
                     </div>
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
