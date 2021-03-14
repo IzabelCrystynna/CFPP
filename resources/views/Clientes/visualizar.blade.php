@@ -4,38 +4,56 @@
     <hr>
     <div class="row">
         <div class="col-8">
-            <div class="form-group">
-                <p>Nome</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->nome}}</p>
-                </div>
-                <p>Rua</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->rua}}</p>
-                </div>
-                <p>Número</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->numero_casa}}</p>
-                </div>
-                <p>Bairro</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->bairro}}</p>
-                </div>
-                <p>Cidade</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->cidade}}</p>
-                </div>
-                <p>UF</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->UF}}</p>
-                </div>
-                <p>Telefone</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->telefone}}</p>
-                </div>
-                <p>Renda</p>
-                <div style="background-color: #c2c2d6; border-radius: 5px">
-                    <p class="mb-2" style="padding-left: 20px;">{{$cliente->renda}}</p>
+            <div class="card">
+                <h4>Dados</h4>
+                <div class="card-body">
+                    <div class="timeline-area">
+                        <div class="timeline-task">
+                            <div class="icon bg1">
+                                <i class="ti-user"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Nome</h4>
+                            </div>
+                            <p>{{$cliente->nome}}</p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg2">
+                                <i class="ti-location-pin"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Endereço</h4>
+                            </div>
+                            <p>{{$cliente->rua}}, {{$cliente->numero_casa}}, {{$cliente->cidade}} - {{$cliente->UF}}</p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg1">
+                                <i class="ti-email"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Bairro</h4>
+                            </div>
+                            <p>{{$cliente->bairro}}</p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg2">
+                                <i class="ti-mobile"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Telefone</h4>
+                            </div>
+                            <p>{{$cliente->telefone}}</p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg1">
+                                <i class="ti-server"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Renda</h4>
+                            </div>
+                            <p>{{$cliente->renda}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,6 +69,7 @@
             @endif
         </div>
     </div>
-    <br>
-    <a href="{{route('clientes.index')}}" class="btn btn-info">Voltar</a>
+    <div class="text-center">
+        <a href="{{route('clientes.index')}}" class="btn btn-info">Voltar</a>
+    </div>
 @endsection

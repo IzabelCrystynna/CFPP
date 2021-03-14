@@ -7,26 +7,61 @@
         <div class="row">
             <div class="form-group col-6">
                 <label>Nome</label>
-                <input class="form-control" type="text" name="nome">
+                <input class="form-control @error('nome') is-invalid @enderror" type="text" name="nome" value="{{old('nome')}}">
+                @error('nome')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>
+                            {{$message}}
+                        </strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group col-6">
                 <label>Lote</label>
-                <input class="form-control" type="text" name="lote">
+                <input class="form-control @error('lote') is-invalid @enderror" type="text" name="lote" value="{{old('lote')}}">
+                @error('lote')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>
+                            {{$message}}
+                        </strong>
+                    </span>
+                @enderror
             </div>
         </div>
     	<div class="row">
             <div class="form-group col-6">
                 <label>Estoque</label>
-                <input class="form-control" type="text" name="estoque">
+                <input class="form-control @error('estoque') is-invalid @enderror" type="text" name="estoque" value="{{old('estoque')}}">
+                @error('estoque')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>
+                            {{$message}}
+                        </strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group col-6">
                 <label>Valor</label>
-                <input class="form-control" type="text" name="valor_unidade">
+                <input class="form-control @error('valor_unidade') is-invalid @enderror" type="text" name="valor_unidade" value="{{old('valor_unidade')}}">
+                @error('valor_unidade')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>
+                            {{$message}}
+                        </strong>
+                    </span>
+                @enderror
             </div> 
         </div>
     	<div class="form-group">
     		<label>Descrição</label>
-    		<input class="form-control" type="text" name="descricao">
+    		<input class="form-control @error('descricao') is-invalid @enderror" type="text" name="descricao" value="{{old('descricao')}}">
+            @error('descricao')
+                <span class="invalid-feedback" role="alert">
+                    <strong>
+                        {{$message}}
+                    </strong>
+                </span>
+            @enderror
     	</div>
         <div class="input-group">
             <div class="input-group-prepend">

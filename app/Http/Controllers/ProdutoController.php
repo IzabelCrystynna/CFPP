@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Validator;
 use Storage;
 use Auth;
 
@@ -14,17 +15,20 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index()
     {
         $search = request('search');
         if($search){
-            $lista = Produto::where([
+            $produtos = Produto::where([
                 ['nome', 'like', '%'.$search.'%']
             ])->get();
         }else{
-            $lista = Produto::all();
+            $produtos = Produto::all();
         }
-        return view('Produtos.lista', ['produtos'=>$lista, 'search'=>$search]);
+        return view('Produtos.lista', ['produtos'=>$produtos, 'search'=>$search]);
     }
 
     /**
@@ -45,6 +49,18 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = Validator::make($request->all(),[
+            'nome' => 'required|string|max:255',
+            'lote' => 'required|string|max:255',
+            'estoque' => 'required|numeric',
+            'valor_unidade' => 'required|numeric',
+            'descricao' => 'required|string|max:255',
+        ]);
+        if($validation->fails()){
+            return back()
+            ->withErrors($validation)
+            ->withInput($request->all());
+        }
         $nome = $request->post('nome');
         $lote = $request->post('lote');
         $estoque = $request->post('estoque');

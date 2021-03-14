@@ -50,14 +50,29 @@
                                 <h5><i class="ti-lock"><label style="font-size: 25px">Cadastro</label></i></h5>
                                 <hr style="background: #948989">
                                 <div class="form-group">
-                                    <input class="form-control border-input" type="text" id="name" name="name" placeholder="Nome" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input class="form-control border-input @error('name') is-invalid @enderror" type="text" id="name" name="name" placeholder="Nome" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control border-input" type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input class="form-control border-input @error('email') is-invalid @enderror" type="email" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control border-input" type="password" id="password" name="password" placeholder="Senha" required autocomplete="new-password">
+                                    <input class="form-control border-input @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="Senha" required autocomplete="new-password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control border-input" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirma Senha" required autocomplete="new-password">
@@ -92,6 +107,28 @@
     <!-- others plugins -->
     <script src="{{asset('resumo/srtdash/assets/js/plugins.js')}}"></script>
     <script src="{{asset('resumo/srtdash/assets/js/scripts.js')}}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#login-form').validate({
+                errorClass: "help-block",
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true
+                    }
+                },
+                highlight: function(e) {
+                    $(e).closest(".form-group").addClass("has-error")
+                },
+                unhighlight: function(e) {
+                    $(e).closest(".form-group").removeClass("has-error")
+                },
+            });
+        });
+    </script>
 </body>
 
 </html>

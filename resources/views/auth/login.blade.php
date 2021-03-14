@@ -48,10 +48,20 @@
                                 <h5><i class="ti-lock"><label style="font-size: 25px">Login</label></i></h5>
                                 <hr style="background: #948989">
                                 <div class="form-group">
-                                    <input class="form-control border-input" type="email" id="email" name="email" placeholder="Email" autocomplete="on" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input class="form-control border-input @error('email') is-invalid @enderror" type="email" id="email" name="email" placeholder="Email" autocomplete="on" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control border-input" type="password" id="password" name="password" placeholder="Senha" required autocomplete="current-password">
+                                    <input class="form-control border-input @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="Senha" required autocomplete="current-password">
+                                     @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="row mb-4 rmber-area">
                                     <div class="col-6">
@@ -96,6 +106,29 @@
     <!-- others plugins -->
     <script src="{{asset('resumo/srtdash/assets/js/plugins.js')}}"></script>
     <script src="{{asset('resumo/srtdash/assets/js/scripts.js')}}"></script>
+    <script type="text/javascript">
+            $(function() {
+                $('#login-form').validate({
+                    errorClass: "help-block",
+                    rules: {
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        password: {
+                            required: true
+                        }
+                    },
+                    highlight: function(e) {
+                        $(e).closest(".form-group").addClass("has-error")
+                    },
+                    unhighlight: function(e) {
+                        $(e).closest(".form-group").removeClass("has-error")
+                    },
+                });
+            });
+        </script>
+
 </body>
 
 </html>

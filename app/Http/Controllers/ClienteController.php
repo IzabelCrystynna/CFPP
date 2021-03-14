@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Storage;
 use Auth;
 
@@ -15,6 +16,9 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index()
     {
         $lista=Cliente::get();
@@ -40,6 +44,22 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = Validator::make($request->all(),[
+            'nome' => 'required|string|max:255',
+            'rua' => 'required|string|max:255',
+            'numero_casa' => 'required|numeric',
+            'bairro' => 'required|string|max:255',
+            'cidade' => 'required|string|max:255',
+            'UF' => 'required|string|max:255',
+            'CPF' => 'required|string|max:255',
+            'telefone' => 'required|string|max:255',
+            'renda' => 'required|numeric',
+        ]);
+        if($validation->fails()){
+            return back()
+            ->withErrors($validation)
+            ->withInput($request->all());
+        }
         $nome = $request->post('nome');
         $rua = $request->post('rua');
         $numero_casa = $request->post('numero_casa');

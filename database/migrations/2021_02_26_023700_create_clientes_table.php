@@ -24,7 +24,7 @@ class CreateClientesTable extends Migration
             $table->char('CPF', 11);
             $table->char('telefone', 9);
             $table->double('renda', 8, 2);
-            $table->UnsignedBigInteger('user_id');
+            $table->UnsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users');
