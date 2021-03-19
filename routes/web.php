@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Cliente;
+use App\Http\Controllers\CompraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::get('/perfil', function () {
 
 Route::resource('clientes', 'ClienteController');
 Route::resource('produtos', 'ProdutoController');
+Route::resource('compras', 'CompraController')->except(['store']);
+Route::post('compras/store/{produto}', [CompraController::class, 'store'])->name('compras.store')->middleware(['auth']);
+Route::resource('compra_produtos', 'CompraProdutoController');
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

@@ -41,28 +41,17 @@
                 @enderror
             </div>
             <div class="form-group col-6">
-                <label>Valor</label>
-                <input class="form-control @error('valor_unidade') is-invalid @enderror" type="text" name="valor_unidade" value="{{old('valor_unidade')}}">
-                @error('valor_unidade')
+                <label>Descrição</label>
+                <input class="form-control @error('descricao') is-invalid @enderror" type="text" name="descricao" value="{{old('descricao')}}">
+                @error('descricao')
                     <span class="invalid-feedback" role="alert">
                         <strong>
                             {{$message}}
                         </strong>
                     </span>
                 @enderror
-            </div> 
+            </div>
         </div>
-    	<div class="form-group">
-    		<label>Descrição</label>
-    		<input class="form-control @error('descricao') is-invalid @enderror" type="text" name="descricao" value="{{old('descricao')}}">
-            @error('descricao')
-                <span class="invalid-feedback" role="alert">
-                    <strong>
-                        {{$message}}
-                    </strong>
-                </span>
-            @enderror
-    	</div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-btn">

@@ -47,28 +47,14 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li class="active">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i><span>Clientes</span></a>
-                                <ul class="collapse">
-                                    <li><a href="#">Cadastrar Clientes</a></li>
-                                    <li><a href="#">Visualizar Cliente</a></li>
-                                    <li><a href="#">Editar Cliente</a></li>
-                                </ul>
+                            <li>
+                                <a href="{{route('compras.index')}}" aria-expanded="true"><i class="ti-shopping-cart"></i><span>Compras</span></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-shopping-cart"></i><span>Compra
-                                    </span></a>
-                                <ul class="collapse">
-                                    <li><a href="#">Cadastrar Compra</a></li>
-                                    <li><a href="#">Visualizar Compra</a></li>
-                                    <li><a href="#">Editar Compra</a></li>
-                                </ul>
+                                <a href="{{(route('clientes.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Clientes</span></a>
                             </li>
                             <li>
-                                <a href="{{(route('clientes.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Lista de Clientes</span></a>
-                            </li>
-                            <li>
-                                <a href="{{(route('produtos.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Lista de Produtos</span></a>
+                                <a href="{{(route('produtos.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Produtos</span></a>
                             </li>
                         </ul>
                     </nav>

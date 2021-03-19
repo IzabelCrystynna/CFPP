@@ -40,7 +40,7 @@
                                         </button>
                                     </form>     
                                 </div>
-                                <a href="#" class="btn btn-primary text-center">Comprar</a>
+                                <button type="button" href="" data-toggle="modal" data-target="#compra{{$produto->id}}" class="btn btn-primary text-center">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -57,4 +57,53 @@
     <div class="text-center">
         <a href="{{route('produtos.create')}}" class="btn btn-info">Adicionar Produto</a>
     </div>
+
+    <!-- Início do modal de cadastrar compra -->
+    @foreach($produtos as $produto)
+    <div class="modal" tabindex="-1" role="dialog" id="compra{{$produto->id}}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{$produto->nome}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('compras.store', ['produto'=>$produto->id])}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <img src="{{asset('/storage/'. $produto->img)}}" height="600px" width="600px">
+                            </div>
+                            <div class="col-6">
+                                <p>Descrição: {{$produto->descricao}}</p>
+                                <p>Estoque: {{$produto->estoque}}</p>
+                                <p>Lote: {{$produto->lote}}</p>
+                                <label>Quantidade</label>
+                                <select name="quantidade" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <label>Valor</label>
+                                <input type="text" name="valor_unidade" class="form-control">
+                                <label>Cliente</label>
+                                <select name="cliente_id" class="form-control">
+                                    @foreach($clientes as $cliente)
+                                        <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div> 
+                        </div>
+                        <button class="btn btn-info">Adicionar carrinho</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+    <!-- Fim do modal de finalizar compra -->
 @endsection

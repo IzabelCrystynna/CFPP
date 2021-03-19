@@ -13,12 +13,7 @@ class CreateFkComprasProdutosTable extends Migration
      */
     public function up()
     {
-        Schema::table('produtos', function (Blueprint $table) {
-            $table->foreign('compra_id')
-                  ->references('id')
-                  ->on('compras');
-            
-        });
+        
     }
 
     /**

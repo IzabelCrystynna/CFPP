@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Compra extends Model
 {
-    use HasFactory;
-    public function users(){
-    	return $this->hasMany(User::class);
+	use HasFactory;
+	
+    public function produtos(){
+    	return $this->belongsToMany(Produto::class,'compra_produtos', 'compra_id', 'produto_id')->withPivot('quantidade', 'valor_unidade');
     }
-    public function clientes(){
-    	return $this->hasMany(Cliente::class);
-    }
+    
 }
+

@@ -5,26 +5,22 @@
     <form action="{{route('produtos.update', ['produto'=>$produto->id])}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-    	<div class="form-group">
-    		<label>Nome</label>
-    		<input class="form-control" type="text" name="nome" value="{{$produto->nome}}">
-    	</div>
         <div class="row">
-            <div class="form-group col-5">
+        	<div class="form-group col-6">
+        		<label>Nome</label>
+        		<input class="form-control" type="text" name="nome" value="{{$produto->nome}}">
+        	</div>
+            <div class="form-group col-6">
                 <label>Lote</label>
                 <input class="form-control" type="text" name="lote" value="{{$produto->lote}}">
             </div>
-            <div class="form-group col-2">
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
                 <label>Estoque</label>
                 <input class="form-control" type="text" name="estoque" value="{{$produto->estoque}}">
             </div>
-            <div class="form-group col-5">
-                <label>Valor</label>
-                <input class="form-control" type="text" name="valor_unidade" value="{{$produto->valor_unidade}}">
-            </div>
-        </div>
-        <div class=row>
-            <div class="form-group col-4">
+            <div class="form-group col-6">
                 <label>Descrição</label>
                 <input class="form-control" type="text" name="descricao" value="{{$produto->descricao}}">
             </div>

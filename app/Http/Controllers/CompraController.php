@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
+use App\Models\Compra;
+use App\Models\Produto;
+use App\Models\CompraProduto;
+use Auth;
+use DB;
 
-class CompraController extends Controller
+class CompraController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +22,10 @@ class CompraController extends Controller
     }
     public function index()
     {
-        //
+        $produtos=Produto::get();
+        $clientes = Cliente::get();
+        $lista=Compra::get();
+        return view('Compra.compra_add', ['compras'=>$lista], ['clientes'=>$clientes]);
     }
 
     /**
@@ -26,7 +35,8 @@ class CompraController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Cliente::get();
+        return view('Compra.compra_add', ['clientes'=>$clientes]);
     }
 
     /**
@@ -35,9 +45,29 @@ class CompraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Produto $produto)
     {
-        //
+        $cliente_id = $request->post('cliente_id');
+        $quantidade = $request->post('quantidade');
+        $valor_unidade = $request->post('valor_unidade');
+
+        $compra = Compra::where(['cliente_id'=>$cliente_id, 'finalizado'=>false])->first();
+
+        if (!$compra) {
+            $compra = new Compra;
+            $compra->cliente_id = $cliente_id;
+            $compra->finalizado = false;
+            $compra->save();
+        }
+
+
+        DB::table('compra_produtos')->insert([
+            'compra_id' => $compra->id,
+            'produto_id'=> $produto->id,
+            'valor_unidade' => $valor_unidade,
+            'quantidade' => $quantidade
+        ]);
+        return redirect()->to(route('compras.index'));
     }
 
     /**
@@ -46,9 +76,11 @@ class CompraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Compra $compra)
     {
-        //
+        $produtos = $compra->produtos;
+        return view('Compra.compra_visualizar', ['produtos'=>$produtos]);
+
     }
 
     /**
@@ -59,7 +91,10 @@ class CompraController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$clientes = Cliente::get();
+        $clientes = Cliente::get();
+        $compra = Compra::find($id);
+        return view('Compra.compra_editar', ['compra'=>$compra], ['clientes'=>$clientes]);
     }
 
     /**
@@ -71,7 +106,15 @@ class CompraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $finalizado=true;
+        $cliente_id = $request->post('cliente_id');
+        $compra = Compra::find($id);
+        if($cliente_id != 0){
+            $compra->cliente_id = $cliente_id;
+        }
+        $compra->finalizado = $finalizado;
+        $compra->save();
+        return redirect()->to(route('compras.index'));
     }
 
     /**
@@ -82,6 +125,8 @@ class CompraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $compra = Compra::find($id);
+        $compra->delete();
+        return redirect()->to(route('compras.index'));
     }
 }
