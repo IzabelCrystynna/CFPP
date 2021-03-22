@@ -15,13 +15,11 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            //$table->bigInteger('unidade');
-            //$table->double('total', 8, 2);
             $table->boolean('finalizado');
             $table->UnsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')
                   ->references('id')
-                  ->on('clientes');
+                  ->on('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }

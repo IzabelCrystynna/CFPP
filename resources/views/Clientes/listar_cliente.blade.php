@@ -49,12 +49,12 @@
     	    				<td>{{$cliente->renda}}</td>
                             <td>
                                 <div class="row">
-                                    <a href="{{route('clientes.edit', ['cliente'=>$cliente->id])}}" class="btn btn-link"><i class="ti-pencil"></i></a>
+                                    <a href="{{route('clientes.edit', ['cliente'=>$cliente->id])}}" class="btn btn-link"><i class="fa fa-pencil"></i></a>
                                     <form action="{{route('clientes.destroy', ['cliente'=>$cliente->id])}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-link bg-transparent">
-                                            <i class="ti-trash"></i>   
+                                            <i class="fa fa-trash"></i>   
                                         </button>
                                     </form>     
                                 </div>
@@ -70,7 +70,10 @@
     	<tbody>
     	</tbody>
     </table>
-    <div class="text-center">
+    <div class="pull-right mt-0">
+        {{$clientes->links('vendor/pagination/bootstrap-4')}}    
+    </div>
+    <div class="text-center mt-5">
         <a href="{{route('clientes.create')}}" class="btn btn-info">Adicionar Cliente</a>
     </div>
 @endsection

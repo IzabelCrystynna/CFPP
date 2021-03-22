@@ -22,6 +22,8 @@
                     <div class="card card-bordered">
                         @if($produto->img)
                             <img class="card-img-top img-fluid" src="{{asset('/storage/'. $produto->img)}}">  
+                        @else
+                            <img src="{{asset('resumo/srtdash/assets/images/avatar_produto.png')}}" height="600px" width="600px">
                         @endif
                         <div class="card-body">
                             <div class="text-center">
@@ -30,13 +32,13 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="{{route('produtos.edit', ['produto'=>$produto->id])}}" class="btn btn-link"><i class="ti-pencil"></i>  Editar</a> 
+                                        <a href="{{route('produtos.edit', ['produto'=>$produto->id])}}" class="btn btn-link"><i class="fa fa-pencil"></i>  Editar</a> 
                                     </div>                   
                                     <form action="{{route('produtos.destroy', ['produto'=>$produto->id])}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-link bg-transparent">
-                                            <i class="ti-trash"></i>  Excluir  
+                                            <i class="fa fa-trash"></i>  Excluir  
                                         </button>
                                     </form>     
                                 </div>
@@ -54,7 +56,10 @@
         </div>
 	@endif
     <br>
-    <div class="text-center">
+    <div class="pull-right mt-0">
+        {{$produtos->links('vendor/pagination/bootstrap-4')}}   
+    </div>
+    <div class="text-center mt-5">
         <a href="{{route('produtos.create')}}" class="btn btn-info">Adicionar Produto</a>
     </div>
 
@@ -74,7 +79,11 @@
                         @csrf
                         <div class="row">
                             <div class="col-6">
-                                <img src="{{asset('/storage/'. $produto->img)}}" height="600px" width="600px">
+                                @if($produto->img)
+                                    <img class="card-img-top img-fluid" src="{{asset('/storage/'. $produto->img)}}">  
+                                @else
+                                    <img src="{{asset('resumo/srtdash/assets/images/avatar_produto.png')}}" height="600px" width="600px">
+                                @endif
                             </div>
                             <div class="col-6">
                                 <p>Descrição: {{$produto->descricao}}</p>

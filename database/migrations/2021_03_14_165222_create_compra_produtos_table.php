@@ -20,11 +20,11 @@ class CreateCompraProdutosTable extends Migration
             $table->UnsignedBigInteger('produto_id');
             $table->foreign('produto_id')
                   ->references('id')
-                  ->on('produtos');
+                  ->on('produtos')->onDelete('cascade');
             $table->UnsignedBigInteger('compra_id');
             $table->foreign('compra_id')
                   ->references('id')
-                  ->on('compras');
+                  ->on('compras')->onDelete('cascade');
             $table->timestamps();
         });
     }

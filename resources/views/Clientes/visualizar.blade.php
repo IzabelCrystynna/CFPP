@@ -4,17 +4,6 @@
     <hr>
     <div class="row">
         <div class="col-6">
-            <h4>Dados</h4>
-            <h4>Nome</h4>
-            <p>{{$cliente->nome}}</p>
-            <h4>Endereço</h4>
-            <p>{{$cliente->rua}}, {{$cliente->numero_casa}}, {{$cliente->cidade}} - {{$cliente->UF}} - {{$cliente->bairro}}</p>
-            <h4>Telefone</h4>
-            <p>{{$cliente->telefone}}</p>
-            <h4>Renda</h4>
-            <p>{{$cliente->renda}}</p>
-        </div>
-        <div class="col-6">
             @if($cliente->img)
                 <p>
                     <img src="{{asset('/storage/'. $cliente->img)}}" height="200px" width="200px" style="border-radius: 600px">  
@@ -24,6 +13,50 @@
                     <img src="{{asset('resumo/srtdash/assets/images/avatar_padrao.png')}}" height="200px" width="200px" style="border-radius: 600px">  
                 </p>
             @endif
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Dados</h4>
+                    <div class="timeline-task">
+                        <div class="icon bg1">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Nome</h4>
+                            <span class="time"><i class="ti-time"></i>{{$cliente->created_at}}</span>
+                        </div>
+                        <p>{{$cliente->nome}}</p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Endereço</h4>
+                        </div>
+                        <p>{{$cliente->rua}}, {{$cliente->numero_casa}}, {{$cliente->cidade}} - {{$cliente->UF}} - {{$cliente->bairro}}</p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg1">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Telefone</h4>
+                        </div>
+                        <p>{{$cliente->telefone}}</p>  
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Renda</h4>
+                        </div>
+                        <p>{{$cliente->renda}}</p>  
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="text-center">

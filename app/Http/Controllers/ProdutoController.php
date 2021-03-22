@@ -28,9 +28,9 @@ class ProdutoController extends Controller
         if($search){
             $produtos = Produto::where([
                 ['nome', 'like', '%'.$search.'%']
-            ])->get();
+            ])->paginate(6);
         }else{
-            $produtos = Produto::all();
+            $produtos = Produto::paginate(6);
         }
         return view('Produtos.lista', ['produtos'=>$produtos, 'search'=>$search], ['clientes'=>$lista], ['compra_produtos'=>$compra_produtos]);
     }

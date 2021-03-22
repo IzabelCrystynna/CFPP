@@ -21,7 +21,7 @@ class ClienteController extends Controller
     }
     public function index()
     {
-        $lista=Cliente::get();
+        $lista=Cliente::paginate(1);
         return view('Clientes.listar_cliente', ['clientes'=>$lista]);
     }
 

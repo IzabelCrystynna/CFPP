@@ -13,7 +13,7 @@
                     <div class="timeline-area">
                         <div class="timeline-task">
                             <div class="icon bg1">
-                                <i class="ti-user"></i>
+                                <i class="fa fa-user"></i>
                             </div>
                             <div class="tm-title">
                                 <h4>Nome</h4>
@@ -23,11 +23,10 @@
                         </div>
                         <div class="timeline-task">
                             <div class="icon bg2">
-                                <i class="ti-email"></i>
+                                <i class="fa fa-envelope"></i>
                             </div>
                             <div class="tm-title">
                                 <h4>Email</h4>
-                                <span class="time"><i class="ti-time"></i>{{Auth::user()->created_at}}</span>
                             </div>
                             <p>{{ Auth::user()->email }}</p>
                         </div>

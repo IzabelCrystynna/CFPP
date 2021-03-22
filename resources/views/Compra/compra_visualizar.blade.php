@@ -21,7 +21,7 @@
                                     <p>Quantidade: {{$produto->pivot->quantidade}}</p>  
                                 </div> 
                                 <div class="col-4"> 
-                                    <p>Total: {{$produto->pivot->quantidade * $produto->pivot->valor_unidade}}</p>
+                                    <p>Total: {{$total=$produto->pivot->quantidade * $produto->pivot->valor_unidade}}</p>
                                 </div>    
                             </div>
                         </div>
@@ -29,5 +29,17 @@
                 </div>
             </div>
        	@endforeach
+        <!--
+            @foreach($produtos as $produto)
+                <p>Total: {{
+                    $total=$produto->pivot->quantidade * $produto->pivot->valor_unidade+$total
+                }}
+                </p>
+            @endforeach
+        -->
+    </div>
+    <br>
+    <div class="text-center">
+        <a href="{{route('compras.index')}}" class="btn btn-info">Voltar</a>
     </div>
 @endsection

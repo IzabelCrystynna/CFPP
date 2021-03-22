@@ -27,7 +27,7 @@ class CreateClientesTable extends Migration
             $table->UnsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                   ->references('id')
-                  ->on('users');
+                  ->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -48,7 +48,7 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li>
-                                <a href="{{route('compras.index')}}" aria-expanded="true"><i class="ti-shopping-cart"></i><span>Compras</span></a>
+                                <a href="{{route('compras.index')}}" aria-expanded="true"><i class="fa fa-cart-plus"></i><span>Compras</span></a>
                             </li>
                             <li>
                                 <a href="{{(route('clientes.index'))}}" aria-expanded="true"><i class="ti-clipboard"></i><span>Clientes</span></a>

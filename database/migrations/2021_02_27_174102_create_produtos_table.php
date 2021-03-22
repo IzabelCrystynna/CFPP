@@ -18,7 +18,6 @@ class CreateProdutosTable extends Migration
             $table->string('nome');
             $table->string('lote');
             $table->bigInteger('estoque');
-            //$table->double('valor_unidade', 8, 2);
             $table->longText('descricao');
             $table->string('img')->nullable();
             $table->timestamps();
