@@ -1,10 +1,12 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!-- Página de listagem dos produtos-->
     <div class="row">
         <div class="text-left col-8">
             <h1>Listagem de Produtos</h1>  
         </div>
         <div class="search-box text-right col-4">
+            <!-- Filtro de procura-->
             <form action="#" method="GET">
                 <input type="text" id="search" name="search" placeholder="Procurar..." required>          
                 <i class="ti-search"></i>
@@ -17,6 +19,7 @@
     @endif
     @if(count($produtos)>0)
         <div class="row">
+            <!-- Laço de repetição para listar todos os produtos cadastrados-->
         	@foreach($produtos as $produto)
                 <div class="col-lg-4 col-md-4 mt-3">
                     <div class="card card-bordered">
@@ -48,17 +51,15 @@
                     </div>
                 </div>
         	@endforeach
-            @if(count($produtos)==0)
-                <p>Não foi possível encontrar nenhum produto com {{$search}}</p>
-            @elseif(count($produtos)==0)
-                <p>Não há esse produto disponível</p>
-            @endif
+            <!-- Fim do Laço de repetição para listar todos os produtos cadastrados-->
         </div>
 	@endif
     <br>
+    <!-- Link da paginação de 6 em 6-->
     <div class="pull-right mt-0">
         {{$produtos->links('vendor/pagination/bootstrap-4')}}   
     </div>
+    <!-- Criar os produtos-->
     <div class="text-center mt-5">
         <a href="{{route('produtos.create')}}" class="btn btn-info">Adicionar Produto</a>
     </div>
@@ -90,15 +91,29 @@
                                 <p>Estoque: {{$produto->estoque}}</p>
                                 <p>Lote: {{$produto->lote}}</p>
                                 <label>Quantidade</label>
-                                <select name="quantidade" class="form-control">
+                                <select name="quantidade" class="form-control @error('quantidade') is-invalid @enderror" value="{{old('quantidade')}}">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
+                                    @error('quantidade')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>
+                                                {{$message}}
+                                            </strong>
+                                        </span>
+                                    @enderror
                                 </select>
                                 <label>Valor</label>
-                                <input type="text" name="valor_unidade" class="form-control">
+                                <input type="text" name="valor_unidade" class="form-control @error('valor_unidade') is-invalid @enderror" value="{{old('valor_unidade')}}">
+                                @error('valor_unidade')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>
+                                            {{$message}}
+                                        </strong>
+                                    </span>
+                                @enderror
                                 <label>Cliente</label>
                                 <select name="cliente_id" class="form-control">
                                     @foreach($clientes as $cliente)

@@ -1,5 +1,6 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!--Página que lista todos os clientes que um funcionário(usuário) atendeu-->
     <h1>Listagem de Clientes</h1>
     <table class="table">
     	<thead>
@@ -34,7 +35,9 @@
     		</tr>
     	</thead>
     		@if(count($clientes)>0)
+            <!--Laço de repetição que lista todos os clientes-->
     			@foreach($clientes as $cliente)
+                <!--Regra da aplicação que lista apenas os clientes que o funcionário(usuário) atendeu-->
                     @can('lista',$cliente)
     	    		    <tr>
     	    				<td>
@@ -70,6 +73,7 @@
     	<tbody>
     	</tbody>
     </table>
+    <!--Paginação dos clientes de 5 em 5-->
     <div class="pull-right mt-0">
         {{$clientes->links('vendor/pagination/bootstrap-4')}}    
     </div>

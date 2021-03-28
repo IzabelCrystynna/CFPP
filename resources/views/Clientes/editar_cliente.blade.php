@@ -1,5 +1,6 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!--Página que editar as informações de um cliente-->
     <h1>Editar Informações</h1>
     <hr>
     <form action="{{route('clientes.update', ['cliente'=>$cliente->id])}}" method="POST" enctype="multipart/form-data">

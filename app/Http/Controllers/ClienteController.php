@@ -16,12 +16,14 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**Essa função determinar que só pode acessar as rotas desse controlador se o usuário estiver logado*/
     public function __construct(){
         $this->middleware('auth');
     }
     public function index()
     {
-        $lista=Cliente::paginate(1);
+        /** Exibir a listagem de todos os clientes de 5 em 5 */
+        $lista=Cliente::paginate(5);
         return view('Clientes.listar_cliente', ['clientes'=>$lista]);
     }
 
@@ -32,6 +34,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
+        /** Redirecionar para a parte de store */
         $usuarios = User::get();
         return view('Clientes.cadastrar_cliente', ['usuarios'=>$usuarios]);
     }
@@ -44,6 +47,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        /** Validação se os dados informados são válidos */
         $validation = Validator::make($request->all(),[
             'nome' => 'required|string|max:255',
             'rua' => 'required|string|max:255',
@@ -60,19 +64,20 @@ class ClienteController extends Controller
             ->withErrors($validation)
             ->withInput($request->all());
         }
+        /** Pega os dados que o usuário informa no input, por meio do request */
         $nome = $request->post('nome');
         $rua = $request->post('rua');
         $numero_casa = $request->post('numero_casa');
         $bairro = $request->post('bairro');
         $cidade = $request->post('cidade');
         $UF = $request->post('UF');
-
         $user_id = $request->post('user_id');
-
         $CPF = $request->post('CPF');
         $telefone = $request->post('telefone');
         $renda = $request->post('renda');
+        /** Criar um novo cliente */
         $cliente = new Cliente;
+        /** Passa as informações que foram pegas para os atributos do cliente */
         $cliente->nome=$nome;
         $cliente->rua = $rua;
         $cliente->numero_casa = $numero_casa;
@@ -87,6 +92,7 @@ class ClienteController extends Controller
         if($user_id != 0){
             $cliente->UF = $UF;
         }
+        /** Parte da imagem do cliente */
         if($request->has('img')){
             $file = $request->file('img');
             $filename = $file->getClientOriginalName();
@@ -95,6 +101,7 @@ class ClienteController extends Controller
             );
             $cliente->img = $path;
         }
+        /** Salvar todas as informações no objeto cliente */
         $cliente->save();
         return redirect()->to(route('clientes.index'));
     }
@@ -107,6 +114,7 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
+        /** Mostra um cliente com base no id passado */
         $cliente = Cliente::find($id);
         return view('Clientes.visualizar', ['cliente'=>$cliente]);
     }
@@ -119,6 +127,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
+        /** Redirecionar para a função de update */
         $usuarios = User::get();
         $cliente = Cliente::find($id);
         return view('Clientes.editar_cliente', ['cliente'=>$cliente], ['usuarios'=>$usuarios]);
@@ -133,6 +142,8 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /** A função update vai atualizar as informações do cliente, caso ele tenha informado alguma informação errada */
+        /** Pega as informações, por meio do request */
         $nome = $request->post('nome');
         $rua = $request->post('rua');
         $numero_casa = $request->post('numero_casa');
@@ -143,7 +154,9 @@ class ClienteController extends Controller
         $CPF = $request->post('CPF');
         $telefone = $request->post('telefone');
         $renda = $request->post('renda');
+        /** Acessar o cliente cujo id foi passado */
         $cliente = Cliente::find($id);
+        /** Troca as antigas informações pelas captadas acima */
         $cliente->nome=$nome;
         $cliente->rua = $rua;
         $cliente->numero_casa = $numero_casa;
@@ -166,6 +179,7 @@ class ClienteController extends Controller
             );
             $cliente->img = $path;
         }
+        /** Salvar as informações no objeto cliente */
         $cliente->save();
         return redirect()->to(route('clientes.index'));
     }
@@ -178,6 +192,7 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
+        /** Destroi do banco de dados o cliente informado */
         $cliente = Cliente::find($id);
         $cliente->delete();
         return redirect()->to(route('clientes.index'));

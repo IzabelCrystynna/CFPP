@@ -11,15 +11,18 @@ class CreateComprasTable extends Migration
      *
      * @return void
      */
+    /**Migração da compra*/
+    /**Nessa migração determina os campos da tabela compra e o tipo de cada campo*/
     public function up()
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
             $table->boolean('finalizado');
+            /**Definição da chave estrangeira de cliente*/
             $table->UnsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')
                   ->references('id')
-                  ->on('clientes')->onDelete('cascade');
+                  ->on('clientes')->onDelete('cascade'); // O método cascade excluir tudo correspondente a esse campo
             $table->timestamps();
         });
     }

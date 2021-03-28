@@ -11,6 +11,8 @@ class CreateProdutosTable extends Migration
      *
      * @return void
      */
+    /**Migração do produto*/
+    /**Nessa migração determina os campos da tabela produto e o tipo de cada campo*/
     public function up()
     {
         Schema::create('produtos', function (Blueprint $table) {
@@ -19,6 +21,7 @@ class CreateProdutosTable extends Migration
             $table->string('lote');
             $table->bigInteger('estoque');
             $table->longText('descricao');
+            /**Campo que armazena a imagem do produto*/
             $table->string('img')->nullable();
             $table->timestamps();
         });

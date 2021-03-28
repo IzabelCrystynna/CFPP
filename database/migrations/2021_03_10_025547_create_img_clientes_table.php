@@ -11,8 +11,10 @@ class CreateImgClientesTable extends Migration
      *
      * @return void
      */
+    /**Migração para editar a tabela cliente e adiciona o campo de imagem*/
     public function up()
     {
+        /**Nesse campo vai armazenar o enderenço da imagem do cliente*/
         Schema::table('clientes', function (Blueprint $table) {
             $table->string('img')->nullable();
         });

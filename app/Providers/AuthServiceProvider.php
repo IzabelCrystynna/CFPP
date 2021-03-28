@@ -23,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /**Regra da aplicação contruída pelo gate que define que será listado apenas os clientes que o usuário(funcionário) antendeu*/
         $this->registerPolicies();
         Gate::define('lista',function($user,$cliente){
             return $user->id === $cliente->user_id;

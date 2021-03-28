@@ -11,6 +11,8 @@ class CreatePasswordResetsTable extends Migration
      *
      * @return void
      */
+
+    /**Migração padrão que o próprio laravel já cria*/
     public function up()
     {
         Schema::create('password_resets', function (Blueprint $table) {

@@ -20,6 +20,8 @@ class CompraFactory extends Factory
      *
      * @return array
      */
+
+    /**Factory que criar uma compra com valores padrões*/
     public function definition()
     {
         return [

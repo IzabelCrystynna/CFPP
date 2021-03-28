@@ -18,26 +18,21 @@ use App\Http\Controllers\CompraController;
 Route::get('/', function () {
     return view('layout.inicio');
 })->name('index');
-Route::get('/login', function () {
-    return view('layout.login');
-})->name('login');
-Route::get('/cadastro', function () {
-    return view('layout.cadastro');
-})->name('cadastro');
-Route::get('/teste', function () {
-    return view('teste');
-});
 Route::get('/perfil', function () {
 	$user=User::get();
     return view('layout.perfil', ['users'=>$user]);
 })->name('perfil');
-
-
-
+/* Rotas relacionadas ao controlador de Clientes */
 Route::resource('clientes', 'ClienteController');
+
+/* Rotas relacionadas ao controlador de Produtos */
 Route::resource('produtos', 'ProdutoController');
+
+/* Rotas relacionadas ao controlador de Compra */
 Route::resource('compras', 'CompraController')->except(['store']);
 Route::post('compras/store/{produto}', [CompraController::class, 'store'])->name('compras.store')->middleware(['auth']);
+
+/* Rotas relacionadas ao controlador de Compras Produtos */
 Route::resource('compra_produtos', 'CompraProdutoController');
 Route::get('/', function () {
     return view('dashboard');

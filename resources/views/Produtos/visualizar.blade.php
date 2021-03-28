@@ -1,9 +1,11 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!-- Página de Visualizar detalhes de um produto-->
     <h1>Visualizar Produto</b></h1>
     <hr>
     <div class="row">
         <div class="col-8">
+            <!-- A imagem do produto-->
             @if($produto->img)
                 <p>
                     <img src="{{asset('/storage/'. $produto->img)}}" height="600px" width="600px">  
@@ -14,6 +16,7 @@
                 </p>
             @endif
         </div>
+        <!-- Informações do produto-->
         <div class="col-4">
             <div class="card">
                 <div class="card-body">
@@ -59,6 +62,7 @@
             </div>
         </div>
     </div>
+    <!-- Voltar para página de listagem dos produtos-->
     <div class="text-center mt-5">
         <a href="{{route('produtos.index')}}" class="btn btn-info intem-center">Voltar</a>
     </div>

@@ -11,6 +11,8 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+
+    /**Migração padrão do usuário que o próprio laravel já cria*/
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {

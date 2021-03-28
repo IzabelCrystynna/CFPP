@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -23,19 +22,12 @@
     <!-- modernizr css -->
     <script src="{{asset('resumo/srtdash/assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
-
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
     <div class="page-container">
-        <!-- sidebar menu area start -->
+        <!-- Início do menu vertical -->
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
@@ -61,8 +53,9 @@
                 </div>
             </div>
         </div>
-        <!-- sidebar menu area end -->
-        <!-- main content area start -->
+        <!-- Fim do menu vertical -->
+
+        <!-- Barra horizontal -->
         <div class="main-content">
             <div class="page-title-area">
                 <div class="row align-items-center">
@@ -74,6 +67,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 clearfix">
+                        <!-- dropdown de login -->
                         <div class="user-profile pull-right">
                             <img class="avatar user-thumb" src="{{asset('resumo/srtdash/assets/images/author/avatar.png')}}" alt="avatar">
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}<i class="fa fa-angle-down"></i></h4>
@@ -91,10 +85,8 @@
                 </div>
             </div>
 
-            <!-- page title area end -->
+            <!-- Início da sessão aonde sera incluido o conteúdo -->
             <div class="main-content-inner">
-                <!-- overview area end -->
-                <!-- market value area start -->
                 <div class="row mt-5 mb-5">
                     <div class="col-12">
                         <div class="card">
@@ -104,23 +96,18 @@
                         </div>  
                     </div>
                 </div>
-                <!-- market value area end -->
-                <!-- row area start -->
+                <!-- Início da sessão aonde sera incluido o conteúdo -->
             </div>
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
+        <!-- Início do rodape-->
         <footer>
             <div class="footer-area">
                 <p>© Copyright 2021. Todos os direitos reservados ao grupo de desenvolvedores do CFPP</p>
             </div>
         </footer>
-        <!-- footer area end-->
+        <!-- Fim do rodape-->
     </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
-    <!-- offset area end -->
-    <!-- jquery latest version -->
+    <!-- Início dos scrips -->
     <script src="{{asset('resumo/srtdash/assets/js/vendor/jquery-2.2.4.min.js')}}"></script>
     <!-- bootstrap 4 js -->
     <script src="{{asset('resumo/srtdash/assets/js/popper.min.js')}}"></script>
@@ -129,7 +116,6 @@
     <script src="{{asset('resumo/srtdash/assets/js/metisMenu.min.js')}}"></script>
     <script src="{{asset('resumo/srtdash/assets/js/jquery.slimscroll.min.js')}}"></script>
     <script src="{{asset('resumo/srtdash/assets/js/jquery.slicknav.min.js')}}"></script>
-
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <!-- start highcharts js -->
@@ -147,6 +133,7 @@
     <!-- others plugins -->
     <script src="{{asset('resumo/srtdash/assets/js/plugins.js')}}"></script>
     <script src="{{asset('resumo/srtdash/assets/js/scripts.js')}}"></script>
+    <!-- Fim dos scrips-->
 </body>
 
 </html>

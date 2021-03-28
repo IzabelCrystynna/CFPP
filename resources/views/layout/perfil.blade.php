@@ -1,12 +1,11 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!-- Página de perfil do usuário(funcionário) -->
     <h1>Perfil do Funcionário</h1>
     <hr>
     <div class="row">
-    	<div class="col-4">
-    		<h4>Imagem do Funcionário</h4>
-    	</div>
-    	<div class="col-4">
+        <!-- Dados do funcionário -->
+    	<div class="col-6">
             <div class="card">
                 <h4>Dados</h4>
                 <div class="card-body">
@@ -34,8 +33,12 @@
                 </div>
             </div>         
     	</div>
-        <div class="col-4">
-            <h4>Rankign</h4>
+        <div class="col-6">
+            <br>
+            <!-- Avatar padrão do funcionário -->
+            <p>
+                <img src="{{asset('resumo/srtdash/assets/images/avatar_padrao.png')}}" height="200px" width="200px" style="border-radius: 600px">  
+            </p>
         </div>
     </div>
 @endsection

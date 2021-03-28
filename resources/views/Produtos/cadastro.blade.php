@@ -1,5 +1,6 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!-- Página para cadastrar um novo produto-->
     <h1>Cadastro de Produtos</h1>
     <hr>
     <form action="{{route('produtos.store')}}" method="POST" enctype="multipart/form-data">

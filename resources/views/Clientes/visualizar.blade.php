@@ -1,8 +1,10 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!--Página que visualizar as informações do cliente-->
     <h1>Perfil do Cliente</b></h1>
     <hr>
     <div class="row">
+        <!--Exibir a imagem do cliente, caso ele tenha cadastrado ou uma imagem padrão do sistema-->
         <div class="col-6">
             @if($cliente->img)
                 <p>
@@ -14,6 +16,7 @@
                 </p>
             @endif
         </div>
+        <!--Exibir as informações do cliente-->
         <div class="col-6">
             <div class="card">
                 <div class="card-body">

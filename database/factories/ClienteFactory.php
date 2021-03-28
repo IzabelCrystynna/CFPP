@@ -20,6 +20,8 @@ class ClienteFactory extends Factory
      *
      * @return array
      */
+
+    /**Factory que criar um cliente com valores padrões*/
     public function definition()
     {
         return [

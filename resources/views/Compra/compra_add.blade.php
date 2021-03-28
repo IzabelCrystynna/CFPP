@@ -1,5 +1,6 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!-- Página que lista todas as compras -->
     <h1>Compras</h1>
     <table class="table">
         <thead>
@@ -24,6 +25,7 @@
                             </div>
                             <div class="col-8">
                                 <p>Código: dfjd95eda6</p>
+                                <!-- Lista o dono da compra -->
                                 @foreach($clientes as $cliente)
                                     @if($cliente->id === $compra->cliente_id)
                                         <p>Cliente: <b>{{$cliente->nome}}</b></p>
@@ -36,9 +38,11 @@
                     <td>Total</td>
                     <td>
                         <div class="row">
+                            <!-- Chama o modal de edição da compra -->
                             <div class="col-2">
                                 <a href="#" type="button" data-toggle="modal" data-target="#editar_compra{{$compra->id}}" class="btn btn-primary text-center">Editar</a>
                             </div>
+                            <!-- Excluir uma compra -->
                             <div class="col-2">
                                 <form action="{{route('compras.destroy', ['compra'=>$compra->id])}}" method="POST">
                                     @csrf
@@ -46,9 +50,11 @@
                                     <button class="btn btn-secondary">Excluir</button>
                                 </form> 
                             </div>
+                            <!--  Chama o modal de finalizar compra -->
                             <div class="col-2">
                                 <a class="btn btn-danger" href="" type="button" data-toggle="modal" data-target="#finalizar_compra{{$compra->id}}">Finalizar</a> 
                             </div> 
+                            <!--  Chama a página de visualizar os produtos da compra -->
                             <div class="col-2">
                                 <a href="{{route('compras.show', ['compra'=>$compra->id])}}" class="btn btn-dark">Visualizar</a>
                             </div>  
@@ -65,7 +71,7 @@
         </tbody>
     </table>
 
-    <!-- Início do modal de edição -->
+    <!-- Início do modal de edição da compra, no caso editar o cliente a quem a compra pertemce -->
     @foreach($compras as $compra)
     <div class="modal" tabindex="-1" role="dialog" id="editar_compra{{$compra->id}}">
         <div class="modal-dialog" role="document">
@@ -101,7 +107,7 @@
     @endforeach
     <!-- Fim do modal de edição -->
 
-    <!-- Início do modal de finalizar compra -->
+    <!-- Início do modal de finalizar compra, no caso muda o status da compra para finalizada -->
     @foreach($compras as $compra)
     <div class="modal" tabindex="-1" role="dialog" id="finalizar_compra{{$compra->id}}">
         <div class="modal-dialog" role="document">

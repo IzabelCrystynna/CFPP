@@ -20,6 +20,8 @@ class UserFactory extends Factory
      *
      * @return array
      */
+
+    /**Factory que criar um usuário com valores padrões*/
     public function definition()
     {
         return [

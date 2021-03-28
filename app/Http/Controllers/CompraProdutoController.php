@@ -10,7 +10,13 @@ use App\Models\Cliente;
 
 class CompraProdutoController extends Controller
 {
+
+    /**Essa função determinar que só pode acessar as rotas desse controlador se o usuário estiver logado*/
+    public function __construct(){
+        $this->middleware('auth');
+    }
 	public function index(){
+        /** Exibir as informações da tabela CompraProduto */
 		$produto=Produto::get();
         $clientes = Cliente::get();
         $lista=Compra::get();
@@ -21,9 +27,9 @@ class CompraProdutoController extends Controller
         
     }
     public function store(Request $request, $id){
+        /** Criar uma nova CompraProduto */
     	$produto = Produto::find($id);
     	$compra_id = $request->id;
-    	dd($compra_id);
         $compra_produtos = new CompraProduto;
         $compra_produtos->produto_id=$produto_id;
         $compra_produtos->compra_id=$compra_id;

@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -24,15 +23,10 @@
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!-- preloader area start -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
-    <!-- preloader area end -->
-    <!-- login area start -->
+    <!-- Início da área de cadastrar um usuário(funcionário) no banco de dados -->
     <div class="login-area">
         <div class="container">
             <div class="row justify-content-center">
@@ -92,8 +86,7 @@
             </div>
         </div>
     </div>
-    <!-- login area end -->
-
+    <!-- Fim da área de cadastrar um usuário(funcionário) no banco de dados -->
     <!-- jquery latest version -->
     <script src="{{asset('resumo/srtdash/assets/js/vendor/jquery-2.2.4.min.js')}}"></script>
     <!-- bootstrap 4 js -->
@@ -107,28 +100,5 @@
     <!-- others plugins -->
     <script src="{{asset('resumo/srtdash/assets/js/plugins.js')}}"></script>
     <script src="{{asset('resumo/srtdash/assets/js/scripts.js')}}"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('#login-form').validate({
-                errorClass: "help-block",
-                rules: {
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true
-                    }
-                },
-                highlight: function(e) {
-                    $(e).closest(".form-group").addClass("has-error")
-                },
-                unhighlight: function(e) {
-                    $(e).closest(".form-group").removeClass("has-error")
-                },
-            });
-        });
-    </script>
 </body>
-
 </html>

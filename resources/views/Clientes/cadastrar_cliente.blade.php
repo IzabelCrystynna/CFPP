@@ -1,5 +1,6 @@
 @extends('layout.inicio')
 @section('conteudo')
+<!-- Página que cadastrar um novo cleinte no banco de dados-->
     <h1>Cadastro de Clientes</h1>
     <hr>
     <form action="{{route('clientes.store')}}" method="POST" enctype="multipart/form-data">
@@ -147,6 +148,7 @@
                     @endforeach
                 </select>
             </div>
+            <!--Parte no qual cadastrar a foto do cleinte, caso ele deseje-->
             <div class="form-group col-6">
                 <div class="input-group">
                     <div class="input-group-prepend">

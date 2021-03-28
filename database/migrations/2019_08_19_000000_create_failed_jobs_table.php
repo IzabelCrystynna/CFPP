@@ -11,6 +11,8 @@ class CreateFailedJobsTable extends Migration
      *
      * @return void
      */
+
+    /**Migração padrão que o próprio laravel já cria*/
     public function up()
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
